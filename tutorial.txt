@@ -1,0 +1,41 @@
+Utilizado Cisco Packet Tracer Version 8.2.0.0162 - Windows 10 64bits
+
+v.1:
+- Feito endereçamento VLSM -> endereçamento_VLSM.txt
+- Novo arquivo no Packet Tracer
+- Adicionado 4 roteadores 2811, 3 switches 2960 e end-devices (pc's e servidor)
+- Conferir dispositivos conforme figura em Atividade_Avaliativa_1_Camada_de_rede.pdf
+- Adicionado 2 placas WIC-2T no Router0 e nos demais roteadores 1 placa WIC-2T (desliga roteador no botão, arrasta a placa em um slot e liga o roteador de volta)
+- Router1 configurado via CLI com comando abaixo e feito analogamente também nos outros roteadores, alterando somente hostname e domain name:
+
+Router>enable
+Router#configure terminal
+Router(config)#hostname Router1
+Router1(config)#ip domain name A
+Router1(config)#crypto key generate rsa
+How many bits in the modulus [512]: 1024
+
+Router1(config)#username fernandog privilege 15 secret 1234
+Router1(config)#ip ssh version 2
+Router1(config)#no ip ssh version 1
+Router1(config)#ip ssh time-out 100
+Router1(config)#ip ssh authentication-retries 5
+Router1(config)#line vty 0 15
+Router1(config-line)#transport input ssh
+Router1(config-line)#login local
+Router1(config-line)#end
+
+Router1#configure terminal
+Router1(config)#line con 0
+Router1(config-line)#login local
+Router1(config-line)#end
+
+-Como ficou os roteadores:
+hostname:	 domain name:	
+Router0			X	
+Router1			A	
+Router2			B	
+Router3			XX
+
+
+-username fernandog privilege 15 secret 1234 e demais configurações do Router1 para todos
