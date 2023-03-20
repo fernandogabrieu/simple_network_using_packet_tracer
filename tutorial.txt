@@ -1,4 +1,5 @@
 Utilizado Cisco Packet Tracer Version 8.2.0.0162 - Windows 10 64bits
+_____________________________________________________________________________________________________________________________
 
 v.1:
 - Feito endereçamento VLSM -> endereçamento_VLSM.txt
@@ -30,12 +31,49 @@ Router1(config)#line con 0
 Router1(config-line)#login local
 Router1(config-line)#end
 
--Como ficou os roteadores:
-hostname:	 domain name:	
-Router0			X	
-Router1			A	
-Router2			B	
-Router3			XX
+-OBS: username "fernandog", privilege "15" (pode ser de 0 a 15), secret "1234" e demais configurações do Router1 listadas acima foram feitas também para os outros roteadores,
+mudando somente o hostname e domain name, como segue abaixo:
+hostname:	    domain name:	
+Router0			'X'	
+Router1			'A'	
+Router2			'B'	
+Router3			'XX'
 
+_____________________________________________________________________________________________________________________________
 
--username fernandog privilege 15 secret 1234 e demais configurações do Router1 para todos
+v.2:
+- Habilitado opção para sempre mostrar nome das portas: Options -> Preferences -> "Always show port labels in logical workspace"
+- Realizado as conexões entre os roteadores utilizando cabo serial DTE ficando:
+Router1 Se0/0/0 -> Router0 Se0/0/0
+Router0 Se0/0/1 -> Router2 Se0/0/0
+Router2 Se0/0/1 -> Router1 Se0/0/1
+Router0 Se0/1/0 -> Router3 Se0/0/0
+
+- Atribuído IP às portas seriais dos roteadores ficando (Para isso, clicar no roteador, ir em "config" e selecionar a interface correspondente):
+Porta serial 0/0/0 do Router1 configurada com ip válido da rede C (192.168.1.193) e máscara /30 (255.255.255.252)
+Porta serial 0/0/0 do Router0 configurada com ip válido da rede C (192.168.1.194) e máscara /30 (255.255.255.252)
+Porta serial 0/0/1 do Router0 configurada com ip válido da rede E (192.168.1.201) e máscara /30 (255.255.255.252)
+Porta serial 0/0/0 do Router2 configurada com ip válido da rede E (192.168.1.202) e máscara /30 (255.255.255.252)
+Porta serial 0/0/1 do Router2 configurada com ip válido da rede D (192.168.1.197) e máscara /30 (255.255.255.252)
+Porta serial 0/0/1 do Router0 configurada com ip válido da rede D (192.168.1.198) e máscara /30 (255.255.255.252)
+OBS: Lembrar de ligar a porta configurada marcando a caixa "on".
+
+- Realizado as conexões entre switches e roteadores e pc's das redes A e B com o cabo Copper Straight-Through em suas portas FastEthernet ficando:
+Router1 Fa0/0 -> Switch0 Fa0/1
+Switch0 Fa0/2 -> PC0 	 Fa0
+Switch0 Fa0/3 -> PC1 	 Fa0
+Switch0 Fa0/4 -> PC2 	 Fa0
+Router2 Fa0/0 -> Switch1 Fa0/1
+Switch1 Fa0/2 -> PC3 	 Fa0
+Switch1 Fa0/3 -> PC4 	 Fa0
+Switch1 Fa0/4 -> PC5 	 Fa0
+
+- Atribuído IP às portas FastEthernet dos roteadores e dos PC's ficando (Para pc's é só clicar no pc, ir na aba "Desktop" e ir em "IP Configuration"): 
+Porta FastEthernet Fa0/0 do Router1 configurada com ip válido da rede A (192.168.1.1) e máscara /25 (255.255.255.128)
+Porta FastEthernet Fa0 do PC0 configurada com ip válido da rede A (192.168.1.2), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
+Porta FastEthernet Fa0 do PC1 configurada com ip válido da rede A (192.168.1.3), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
+Porta FastEthernet Fa0 do PC2 configurada com ip válido da rede A (192.168.1.4), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
+Porta FastEthernet Fa0/0 do Router2 configurada com ip válido da rede B (192.168.1.129), máscara /26 (255.255.255.192)
+Porta FastEthernet Fa0 do PC0 configurada com ip válido da rede B (192.168.1.130), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
+Porta FastEthernet Fa0 do PC1 configurada com ip válido da rede B (192.168.1.131), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
+Porta FastEthernet Fa0 do PC2 configurada com ip válido da rede B (192.168.1.132), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
