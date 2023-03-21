@@ -15,7 +15,6 @@ Router(config)#hostname Router1
 Router1(config)#ip domain name A
 Router1(config)#crypto key generate rsa
 How many bits in the modulus [512]: 1024
-
 Router1(config)#username fernandog privilege 15 secret 1234
 Router1(config)#ip ssh version 2
 Router1(config)#no ip ssh version 1
@@ -25,7 +24,6 @@ Router1(config)#line vty 0 15
 Router1(config-line)#transport input ssh
 Router1(config-line)#login local
 Router1(config-line)#end
-
 Router1#configure terminal
 Router1(config)#line con 0
 Router1(config-line)#login local
@@ -50,15 +48,15 @@ Router2 Se0/0/1 -> Router1 Se0/0/1
 Router0 Se0/1/0 -> Router3 Se0/0/0
 
 - Atribuído IP às portas seriais dos roteadores ficando (Para isso, clicar no roteador, ir em "config" e selecionar a interface correspondente):
-Porta serial 0/0/0 do Router1 configurada com ip válido da rede C (192.168.1.193) e máscara /30 (255.255.255.252)
-Porta serial 0/0/0 do Router0 configurada com ip válido da rede C (192.168.1.194) e máscara /30 (255.255.255.252)
-Porta serial 0/0/1 do Router0 configurada com ip válido da rede E (192.168.1.201) e máscara /30 (255.255.255.252)
-Porta serial 0/0/0 do Router2 configurada com ip válido da rede E (192.168.1.202) e máscara /30 (255.255.255.252)
-Porta serial 0/0/1 do Router2 configurada com ip válido da rede D (192.168.1.197) e máscara /30 (255.255.255.252)
-Porta serial 0/0/1 do Router0 configurada com ip válido da rede D (192.168.1.198) e máscara /30 (255.255.255.252)
+Porta se0/0/0 do Router1 configurada com ip válido da rede C (192.168.1.193) e máscara /30 (255.255.255.252)
+Porta se0/0/0 do Router0 configurada com ip válido da rede C (192.168.1.194) e máscara /30 (255.255.255.252)
+Porta se0/0/1 do Router0 configurada com ip válido da rede E (192.168.1.201) e máscara /30 (255.255.255.252)
+Porta se0/0/0 do Router2 configurada com ip válido da rede E (192.168.1.202) e máscara /30 (255.255.255.252)
+Porta se0/0/1 do Router2 configurada com ip válido da rede D (192.168.1.197) e máscara /30 (255.255.255.252)
+Porta se0/0/1 do Router0 configurada com ip válido da rede D (192.168.1.198) e máscara /30 (255.255.255.252)
 OBS: Lembrar de ligar a porta configurada marcando a caixa "on".
 
-- Realizado as conexões entre switches e roteadores e pc's das redes A e B com o cabo Copper Straight-Through em suas portas FastEthernet ficando:
+- Realizado as conexões entre switches e roteadores e pc's das redes A e B com o cabo Copper Straight-Through em suas portas FastEthernet:
 Router1 Fa0/0 -> Switch0 Fa0/1
 Switch0 Fa0/2 -> PC0 	 Fa0
 Switch0 Fa0/3 -> PC1 	 Fa0
@@ -69,11 +67,39 @@ Switch1 Fa0/3 -> PC4 	 Fa0
 Switch1 Fa0/4 -> PC5 	 Fa0
 
 - Atribuído IP às portas FastEthernet dos roteadores e dos PC's ficando (Para pc's é só clicar no pc, ir na aba "Desktop" e ir em "IP Configuration"): 
-Porta FastEthernet Fa0/0 do Router1 configurada com ip válido da rede A (192.168.1.1) e máscara /25 (255.255.255.128)
-Porta FastEthernet Fa0 do PC0 configurada com ip válido da rede A (192.168.1.2), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
-Porta FastEthernet Fa0 do PC1 configurada com ip válido da rede A (192.168.1.3), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
-Porta FastEthernet Fa0 do PC2 configurada com ip válido da rede A (192.168.1.4), máscara /25 (255.255.255.128) e gateway padrão sendo o Router1 (192.168.1.1)
-Porta FastEthernet Fa0/0 do Router2 configurada com ip válido da rede B (192.168.1.129), máscara /26 (255.255.255.192)
-Porta FastEthernet Fa0 do PC0 configurada com ip válido da rede B (192.168.1.130), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
-Porta FastEthernet Fa0 do PC1 configurada com ip válido da rede B (192.168.1.131), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
-Porta FastEthernet Fa0 do PC2 configurada com ip válido da rede B (192.168.1.132), máscara /26 (255.255.255.192) e gateway padrão sendo o Router2 (192.168.1.129)
+Porta Fa0/0 do Router1 configurada com ip válido da rede A (192.168.1.1) e máscara /25 (255.255.255.128)
+Porta Fa0 do PC0 configurada com ip válido da rede A (192.168.1.2), máscara /25 (255.255.255.128) e gateway padrão: Router1 (192.168.1.1)
+Porta Fa0 do PC1 configurada com ip válido da rede A (192.168.1.3), máscara /25 (255.255.255.128) e gateway padrão: Router1 (192.168.1.1)
+Porta Fa0 do PC2 configurada com ip válido da rede A (192.168.1.4), máscara /25 (255.255.255.128) e gateway padrão: Router1 (192.168.1.1)
+Porta Fa0/0 do Router2 configurada com ip válido da rede B (192.168.1.129), máscara /26 (255.255.255.192)
+Porta Fa0 do PC0 configurada com ip válido da rede B (192.168.1.130), máscara /26 (255.255.255.192) e gateway padrão: Router2 (192.168.1.129)
+Porta Fa0 do PC1 configurada com ip válido da rede B (192.168.1.131), máscara /26 (255.255.255.192) e gateway padrão: Router2 (192.168.1.129)
+Porta Fa0 do PC2 configurada com ip válido da rede B (192.168.1.132), máscara /26 (255.255.255.192) e gateway padrão: Router2 (192.168.1.129)
+
+_____________________________________________________________________________________________________________________________
+
+v.3:
+
+- Configurado roteamento dinâmico OSPF entre rede A -> B:
+Router1#configure terminal
+Router1(config)#router ospf 1
+Router1(config-router)#network 192.168.1.196 0.0.0.3 area 0
+04:33:25: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.1.202 on Serial0/0/1
+Router1(config-router)#network 192.168.1.128 0.0.0.63 area 0
+Router1(config-router)#network 192.168.1.0 0.0.0.127 area 0
+Router1(config-router)#end
+Router1#copy running-config startup-config
+ENTER
+
+
+- Configurado roteamento dinâmico OSPF entre rede B -> A:
+Router2#configure terminal
+Router2(config)#router ospf 1
+Router2(config-router)#network 192.168.1.196 0.0.0.3 area 0
+Router2(config-router)#network 192.168.1.128 0.0.0.63 area 0
+Router2(config-router)#network 192.168.1.0 0.0.0.127 area 0
+Router2(config-router)#end
+Router2#copy running-config startup-config
+ENTER
+
+- Teste entre de ping entre pc's funcionando após configuração de OSPF
