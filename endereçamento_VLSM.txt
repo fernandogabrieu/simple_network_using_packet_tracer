@@ -1,4 +1,4 @@
-sub-rede	dispositivos		máscara		end. rede	1° válido	último válido	broadcast
+sub-rede	#dispositivos		máscara		end. rede	1° válido	último válido	broadcast
    A		64			/25		192.168.1.0	192.168.1.1	192.168.1.126	192.168.1.127
    B		58			/26		192.168.1.128	192.168.1.129	192.168.1.190   192.168.1.191
    C		2			/30		192.168.1.192	192.168.1.193	192.168.1.194	192.168.1.195
