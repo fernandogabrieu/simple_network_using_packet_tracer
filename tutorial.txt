@@ -91,29 +91,25 @@ ________________________________________________________________________________
 
 v.3:
 
-- Configurado roteamento dinâmico OSPF entre rede A -> D -> B:
+- Configurado roteamento dinâmico OSPF no Router1 para as redes D e A:
 Router1#configure terminal
 Router1(config)#router ospf 1
 Router1(config-router)#network 192.168.1.196 0.0.0.3 area 0
-04:33:25: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.1.202 on Serial0/0/1
-Router1(config-router)#network 192.168.1.128 0.0.0.63 area 0
 Router1(config-router)#network 192.168.1.0 0.0.0.127 area 0
 Router1(config-router)#end
 Router1#copy running-config startup-config
 ENTER
 
-
-- Configurado roteamento dinâmico OSPF entre rede B -> D -> A:
+- Configurado roteamento dinâmico OSPF no Router2 para as redes D e B:
 Router2#configure terminal
 Router2(config)#router ospf 1
 Router2(config-router)#network 192.168.1.196 0.0.0.3 area 0
 Router2(config-router)#network 192.168.1.128 0.0.0.63 area 0
-Router2(config-router)#network 192.168.1.0 0.0.0.127 area 0
 Router2(config-router)#end
 Router2#copy running-config startup-config
 ENTER
 
-- Teste entre de ping entre pc's funcionando após configuração de OSPF. 
+- Teste entre de ping entre pc's das rede A e B funcionando após configuração de OSPF. 
 OBS: 
 *Para fazer o teste, clicar em um pc, ir na aba "Desktop", ir no prompt de comando e aplicar o comando de ping.
 *Exemplo de ping entre o PC0 e o PC3: "ping 192.168.1.130"
@@ -126,9 +122,51 @@ v.4:
 Porta Se0/1/0 do Router0 configurada com ip 15.0.0.1 e máscara /30 (255.255.255.252)
 Porta Se0/0/0 do Router3 configurada com ip 15.0.0.2 e máscara /30 (255.255.255.252)
 
-- Realizado as conexões entre switch, roteador, pc e servidor da rede do topo com cabo Copper Straight-Through em suas portas FastEthernet
+- Realizado as conexões entre switch, roteadores, pc e servidor da rede do topo com cabo Copper Straight-Through em suas portas FastEthernet
 
 - Atribuído IP às portas FastEthernet do switch, roteador, pc e servidor da rede do topo ficando: 
 Porta Fa0/0 do Router3 configurada com ip 19.0.0.1 e máscara /24 (255.255.255.0)
 Porta Fa0 do PC6 configurada com ip 19.0.0.2 e máscara /25 (255.255.255.0) e gateway padrão: Router3 (19.0.0.1)
 Porta Fa0 do Server0 configurada com ip 19.0.0.3 e máscara /25 (255.255.255.0) e gateway padrão: Router3 (19.0.0.1)
+
+_____________________________________________________________________________________________________________________________
+
+v.5:
+
+- Configurado roteamento dinâmico OSPF no Router3 para as redes 15.0.0.0 e 19.0.0.0:
+Router3#configure terminal 
+Router3(config)#router ospf 1
+Router3(config-router)#network 15.0.0.0 0.0.0.3 area 0
+Router3(config-router)#network 19.0.0.0 0.0.0.255 area 0
+Router3(config-router)#end
+Router3#copy running-config startup-config
+ENTER
+
+- Configurado roteamento dinâmico OSPF no Router0 para as redes 15.0.0.0, E e C:
+Router0#configure terminal
+Router0(config)#router ospf 1
+Router0(config-router)#network 15.0.0.0 0.0.0.3 area 0
+Router0(config-router)#network 192.168.1.200 0.0.0.3 area 0
+Router0(config-router)#network 192.168.1.192 0.0.0.3 area 0
+Router0(config-router)#end
+Router0#copy running-config startup-config
+ENTER
+
+- Configurado roteamento dinâmico OSPF no Router2 para a rede E:
+Router2#configure terminal
+Router2(config)#router ospf 1
+Router2(config-router)#network 192.168.1.200 0.0.0.3 area 0
+Router2(config-router)#end
+Router2#copy running-config startup-config
+ENTER
+
+- Configurado roteamento dinâmico OSPF no Router1 para a rede C:
+Router1#configure terminal
+Router1(config)#router ospf 1
+Router1(config-router)#network 192.168.1.192 0.0.0.3 area 0
+Router1(config-router)#end
+Router1#copy running-config startup-config
+ENTER
+
+
+- Teste de ping funcionando entre todas as máquinas da rede.
