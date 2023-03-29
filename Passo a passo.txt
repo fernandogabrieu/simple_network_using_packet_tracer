@@ -61,7 +61,7 @@ Porta Se0/0/0 do Router0 configurada com ip 192.168.1.194 (rede C) e máscara /3
 Porta Se0/0/1 do Router0 configurada com ip 192.168.1.201 (rede E) e máscara /30 (255.255.255.252)
 Porta Se0/0/0 do Router2 configurada com ip 192.168.1.202 (rede E) e máscara /30 (255.255.255.252)
 Porta Se0/0/1 do Router2 configurada com ip 192.168.1.197 (rede D) e máscara /30 (255.255.255.252)
-Porta Se0/0/1 do Router0 configurada com ip 192.168.1.198 (rede D) e máscara /30 (255.255.255.252)
+Porta Se0/0/1 do Router1 configurada com ip 192.168.1.198 (rede D) e máscara /30 (255.255.255.252)
 OBS:
 *Caso deseje configurar via CLI aplicar o comando como no exemplo seguinte substituindo porta, ip e máscara:
 "Router0(config)#interface Serial0/1/0
